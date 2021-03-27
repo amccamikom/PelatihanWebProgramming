@@ -47,7 +47,7 @@ function findStudent(string $nim) {
  * Tambah data student baru.
  * 
  * @param  array  $data  Data Input $_POST
- * @return  array
+ * @return  int  Affected rows
  */
 function createStudent(array $data) {
     global $connection;
@@ -61,7 +61,9 @@ function createStudent(array $data) {
         $statement, 'ssss', $data['nim'], $data['nama'], $data['alamat'], $data['no_hp']
     );
 
-    return mysqli_stmt_execute($statement);
+    mysqli_stmt_execute($statement);
+
+    return mysqli_affected_rows($connection);
 }
 
 /**
